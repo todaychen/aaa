@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全选反选</title>
+</head>
+<body>
+	<input type="button" id="allBtn" value="全选">
+	<input type="button" id="reverseBtn" value="反选">
+	<input type="checkbox" id="check">
+	<br/>
+
+	<input name="ckb" type="checkbox"><br/>
+	<input name="ckb" type="checkbox"><br/>
+	<input name="ckb" type="checkbox"><br/>
+	<input name="ckb" type="checkbox"><br/>
+	<input name="ckb" type="checkbox"><br/>
+	<input name="ckb" type="checkbox"><br/>
+	<input name="ckb" type="checkbox"><br/>
+	<input name="ckb" type="checkbox"><br/>
+</body>
+<script type="text/javascript">
+	// 全选
+	var allBtn = document.getElementById("allBtn");
+	// 反选
+	var reverseBtn = document.getElementById("reverseBtn");
+	// 检查的全选的checkbox
+	var check = document.getElementById("check");
+	// 一组的checkbox
+	var ckbs = document.getElementsByName("ckb");
+
+
+	// 全选按钮
+	allBtn.onclick = function(){
+		for(var i = 0; i < ckbs.length; i++){
+			ckbs[i].checked = true;
+		}
+		checkFn();
+	}
+
+	// 反选按钮
+	reverseBtn.onclick = function(){
+		for(var i = 0; i < ckbs.length; i++){
+			/*if(ckbs[i].checked){
+				ckbs[i].checked = false;
+			}else{
+				ckbs[i].checked = true;
+			}*/
+			ckbs[i].checked = !ckbs[i].checked;
+		}
+		checkFn();
+	}
+
+	// 函数判断是否所有的checkbox是否都选上
+	function checkFn(){
+		// 代表复选框check 是要勾选的
+		var bol = true;
+		for(var i = 0; i < ckbs.length; i++){
+			if(ckbs[i].checked == false){
+				bol = false;
+				break;
+			}
+		}
+
+		check.checked = bol;
+	}
+
+	// 一组的checkbox添加事件
+	for(var i = 0; i < ckbs.length; i++){
+		ckbs[i].onclick = function(){
+			checkFn();
+		}
+	}
+	
+</script>
+</html>
